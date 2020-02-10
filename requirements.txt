@@ -1,3 +1,5 @@
 azure-functions
-configparser
+requests
+feedparser
+azure.storage
 bs4
