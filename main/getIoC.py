@@ -206,8 +206,8 @@ def convert_observable_to_json(parsed_observables):
     return (parsed_observables)
 
 def processUS_CertRSS():
-    az_blob_conn_string = os.environ(['CUSTOMCONNSTR_blob_storage'])
-    az_sa_container = os.environ(['AZURE_STORAGEACCOUNT_CONTAINER'])
+    az_blob_conn_string = os.environ['BLOB_STORAGE_CUSTOMCONNSTR']
+    az_sa_container = os.environ['AZ_SA_CONTAINER']
     
     return_observables = {}
     return_observables["count"] = 0
