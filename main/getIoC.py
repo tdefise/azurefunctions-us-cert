@@ -7,7 +7,6 @@ import re
 import os
 import sys
 import requests
-import configparser
 import urllib
 import feedparser 
 from bs4 import BeautifulSoup
@@ -15,13 +14,6 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import json
 
 RSS_FEED = "https://www.us-cert.gov/ncas/analysis-reports.xml"
-
-
-def config_file():
-    config = configparser.RawConfigParser()
-    config.read('config.ini')
-    AZURE_BLOB_CONNECTION_STRING = config.get('AZURE', 'az_blob_conn_string')
-    AZURE_STORAGE_ACCOUNT_CONTAINER = config.get('AZURE', 'az_sa_container')
 
 
 def upload_file_az_sa(filename, az_blob_conn_string, az_sa_container):
@@ -214,10 +206,8 @@ def convert_observable_to_json(parsed_observables):
     return (parsed_observables)
 
 def processUS_CertRSS():
-    config = configparser.RawConfigParser()
-    config.read('config.ini')
-    az_blob_conn_string = config.get('AZURE', 'az_blob_conn_string')
-    az_sa_container = config.get('AZURE', 'az_sa_container')
+    az_blob_conn_string = os.environ['CUSTOMCONNSTR_blob_storage']
+    az_sa_container = os.environ['AZURE', 'AZURE_STORAGEACCOUNT_CONTAINER'']
     
     return_observables = {}
     return_observables["count"] = 0
